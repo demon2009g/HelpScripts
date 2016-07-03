@@ -7,6 +7,7 @@
 */
 mb_internal_encoding("UTF-8");
 date_default_timezone_set('Europe/Moscow');
+$old_chdir = realpath('.');
 chdir(__DIR__);
 $path_to_config = "./include/config.php";
 $path_to_function = "../../mpak.cms/include/mpfunc.php";
@@ -22,6 +23,7 @@ if($path_to_config and file_exists($path_to_config)){
 	$conf['db']['pass'] = 'password';
 	$conf['db']['name'] = 'basename';
 	$conf["db"]["open_basedir"] = '.:.:/tmp';
+	$arg['modpath'] = "modpath";
 }
 
 $conf['db']['conn'] = new PDO("{$conf['db']['type']}:host={$conf['db']['host']};dbname={$conf['db']['name']};charset=UTF8", $conf['db']['login'], $conf['db']['pass'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC));
@@ -34,7 +36,7 @@ if(file_exists($path_to_function)){
 }else{
 	die("File not found: '$path_to_function'.\nCD_Folder: '".realpath('.')."'\n");
 }
-
+chdir($old_chdir);
 /*
 	any code
 	rb('mp_table_name');
