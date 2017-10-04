@@ -5,7 +5,7 @@ $text="
 Сжатие страницы https://testspbmsk.ve-zy.ru/img/logo.png уменьшит ее размер на 1,7 КБ (28 %).
 ";
 
-preg_match_all("#(https?:\/\/[\w]+[^ \,\"\n\r\t<]*)[^\r]+\((\d+)\s+%\)#iu",trim($text),$match);
+preg_match_all("#(https?:\/\/[\w]+[^ \,\"\n\r?\t<]*)[^\n]+\((\d+)\s+%\)#iu",trim($text),$match);
 
 $urls = $match[1];
 $proc = $match[2];
